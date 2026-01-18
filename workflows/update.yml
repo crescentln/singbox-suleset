@@ -1,0 +1,57 @@
+name: Update Ruleset
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "rules/**"
+      - "scripts/**"
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Build JSON Rulesets
+        run: python scripts/build.py
+
+      - name: Install Sing-box
+        run: |
+          VERSION=1.8.0 
+          # Note: Using a fixed version or fetching latest. For simplicity, just grabbing a known release or using `go install` if time permits, but downloading binary is faster.
+          # Actually, let's use a simpler method: just don't compile to SRS if we can't easily get the binary, 
+          # BUT the user likely wants .srs.
+          # Let's try to fetch the latest release.
+          curl -L -o sing-box.tar.gz https://github.com/SagerNet/sing-box/releases/download/v1.8.5/sing-box-1.8.5-linux-amd64.tar.gz
+          tar -xzf sing-box.tar.gz
+          mv sing-box-*/sing-box .
+          chmod +x sing-box
+
+      - name: Compile to SRS
+        run: |
+          mkdir -p output
+          for json_file in output/*.json; do
+            filename=$(basename -- "$json_file")
+            filename="${filename%.*}"
+            ./sing-box rule-set compile "$json_file" -o "output/$filename.srs"
+          done
+
+      - name: Commit and Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update rulesets"
+          file_pattern: "output/*"
