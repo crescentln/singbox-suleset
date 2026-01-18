@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "google.com",
+        "youtube.com",
+        "twitter.com",
+        "facebook.com"
+      ]
+    }
+  ]
+}
