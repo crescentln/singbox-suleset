@@ -508,6 +508,7 @@
         "bigfiles.virustotal.com",
         "mirrors.usinternet.com",
         "mirror.pit.teraswitch.com",
+        "download.technitium.com",
         "mirror.team-cymru.com",
         "downloads.slack-edge.com",
         "mirror.plusserver.com",
@@ -576,6 +577,7 @@
         "mirror.biznetgio.com",
         "product-downloads.atlassian.com",
         "gnu.askapache.com",
+        "release.arcboxcdn.com",
         "boot.arcboxcdn.com",
         "downloadr2.apkmirror.com",
         "mirror.nl.altushost.com",
@@ -694,6 +696,9 @@
         "dl.google.com",
         "dl.l.google.com",
         "codeload.github.com",
+        "omtmapupdate.garmin.com",
+        "worldwide.omtmapupdate.garmin.com",
+        "download.garmin.com",
         "download.edovia.com",
         "updates.edovia.com",
         "download.eassos.com",
@@ -716,6 +721,7 @@
         "free.hands.com",
         "addins.deepl.com",
         "download.cpuid.com",
+        "extensionupdater.brave.com",
         "componentupdater.brave.com",
         "go-updater.brave.com",
         "mirror-cdn.xtom.com",
@@ -1426,6 +1432,7 @@
         "mirrors.tds.net.org",
         "mirror.noc.one",
         "launchpadlibrarian.net",
+        "launchpadcontent.net",
         "mirrors.lucidnetworks.net",
         "dl.sourceforge.net",
         "dl.playstation.net",
@@ -1914,4 +1921,3 @@
     }
   ]
 }
-
